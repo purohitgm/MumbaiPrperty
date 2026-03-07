@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mumbai Luxury Real Estate Price Drops | PanicSelling</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a; --surface: #111111; --surface2: #181818;
+    --border: #222222; --accent: #ff3b2f; --accent2: #ff6b35;
+    --green: #00c969; --text: #f0ede8; --muted: #666; --muted2: #444;
+    --gold: #c9a227;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; font-size:14px; line-height:1.5; }
+
+  .banner { background:#1a0a00; border-bottom:1px solid #331a00; text-align:center; padding:10px 20px; font-size:12px; color:#aaa; font-family:'DM Mono',monospace; }
+  .banner a { color:var(--accent2); text-decoration:none; }
+
+  header { border-bottom:1px solid var(--border); padding:28px 40px 24px; display:flex; align-items:flex-start; justify-content:space-between; gap:20px; }
+  .logo-area { display:flex; flex-direction:column; gap:4px; }
+  .logo-icon { font-size:28px; line-height:1; margin-bottom:2px; }
+  .logo-wordmark { font-family:'Syne',sans-serif; font-weight:800; font-size:22px; letter-spacing:-0.03em; }
+  .logo-wordmark span { color:var(--accent); }
+  .logo-sub { font-family:'DM Mono',monospace; font-size:10px; color:var(--muted); letter-spacing:0.12em; text-transform:uppercase; }
+  .nav-links { display:flex; align-items:center; gap:6px; font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em; margin-top:10px; }
+  .nav-links a { color:var(--muted); text-decoration:none; padding:4px 10px; border:1px solid var(--border); border-radius:2px; transition:all 0.2s; }
+  .nav-links a:hover { color:var(--text); border-color:var(--muted2); }
+  .nav-links a.active { color:var(--text); border-color:var(--accent); background:rgba(255,59,47,0.08); }
+
+  .stats-bar { display:grid; grid-template-columns:repeat(4,1fr); border-bottom:1px solid var(--border); }
+  .stat-cell { padding:20px 32px; border-right:1px solid var(--border); }
+  .stat-cell:last-child { border-right:none; }
+  .stat-label { font-family:'DM Mono',monospace; font-size:10px; color:var(--muted); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:6px; }
+  .stat-value { font-family:'Syne',sans-serif; font-size:28px; font-weight:700; letter-spacing:-0.03em; }
+  .stat-value.red { color:var(--accent); }
+  .stat-value.green { color:var(--green); }
+  .stat-value.gold { color:var(--gold); }
+  .stat-sub { font-size:11px; color:var(--muted); margin-top:2px; }
+
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.8)} }
+  .live-badge { display:inline-flex; align-items:center; gap:7px; font-family:'DM Mono',monospace; font-size:11px; color:var(--green); letter-spacing:0.06em; }
+  .pulse-dot { width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 1.8s ease-in-out infinite;flex-shrink:0; }
+
+  .description-block { padding:28px 40px; border-bottom:1px solid var(--border); max-width:860px; }
+  .description-block h2 { font-family:'DM Mono',monospace; font-size:11px; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px; }
+  .description-block p { color:#888; font-size:13px; line-height:1.7; }
+  details { margin-top:14px; border:1px solid var(--border); border-radius:3px; overflow:hidden; }
+  summary { padding:10px 14px; font-family:'DM Mono',monospace; font-size:11px; color:var(--muted); cursor:pointer; letter-spacing:0.06em; background:var(--surface); list-style:none; }
+  summary::-webkit-details-marker { display:none; }
+  summary::before { content:'▶ '; font-size:9px; }
+  details[open] summary::before { content:'▼ '; }
+  .how-steps { padding:16px 18px; display:flex; flex-direction:column; gap:10px; background:var(--surface); }
+  .step { display:flex; gap:14px; align-items:flex-start; font-size:13px; color:#888; }
+  .step-num { font-family:'DM Mono',monospace; font-size:11px; color:var(--accent); width:18px; flex-shrink:0; margin-top:1px; }
+
+  .filters-row { padding:16px 40px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+  .filter-tabs { display:flex; gap:4px; flex-wrap:wrap; }
+  .tab { padding:6px 14px; font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.05em; border:1px solid var(--border); border-radius:2px; cursor:pointer; color:var(--muted); background:transparent; transition:all 0.15s; white-space:nowrap; }
+  .tab:hover { color:var(--text); border-color:var(--muted2); }
+  .tab.active { color:var(--text); border-color:var(--accent); background:rgba(255,59,47,0.1); }
+  .right-controls { display:flex; gap:8px; align-items:center; }
+  .sort-select { padding:6px 12px; font-family:'DM Mono',monospace; font-size:11px; background:var(--surface); border:1px solid var(--border); border-radius:2px; color:var(--text); cursor:pointer; outline:none; }
+  .currency-toggle { display:flex; border:1px solid var(--border); border-radius:2px; overflow:hidden; }
+  .curr-btn { padding:6px 12px; font-family:'DM Mono',monospace; font-size:11px; cursor:pointer; background:transparent; border:none; color:var(--muted); transition:all 0.15s; }
+  .curr-btn.active { background:var(--surface2); color:var(--text); }
+  .refresh-btn { padding:6px 14px; font-family:'DM Mono',monospace; font-size:11px; background:transparent; border:1px solid var(--border); border-radius:2px; color:var(--muted); cursor:pointer; transition:all 0.15s; }
+  .refresh-btn:hover { color:var(--text); border-color:var(--muted2); }
+  .refresh-btn.loading { color:var(--accent); border-color:var(--accent); }
+
+  .listings-area { padding:0 40px 40px; }
+  .table-header { display:grid; grid-template-columns:2fr 1.4fr 1fr 1fr 1fr 1fr 0.7fr; padding:12px 16px; font-family:'DM Mono',monospace; font-size:10px; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase; border-bottom:1px solid var(--border); margin-top:16px; }
+
+  @keyframes scanIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+  .listing-row { display:grid; grid-template-columns:2fr 1.4fr 1fr 1fr 1fr 1fr 0.7fr; padding:14px 16px; border-bottom:1px solid #161616; align-items:center; cursor:pointer; transition:background 0.15s; text-decoration:none; color:inherit; animation:scanIn 0.35s ease both; }
+  .listing-row:hover { background:var(--surface); }
+
+  .prop-name { font-family:'DM Sans',sans-serif; font-weight:500; font-size:13.5px; color:var(--text); margin-bottom:2px; }
+  .prop-sub { font-family:'DM Mono',monospace; font-size:10px; color:var(--muted); }
+  .location-badge { display:inline-flex; align-items:center; gap:5px; font-size:12px; color:#aaa; }
+  .location-badge::before { content:''; width:5px;height:5px;border-radius:50%;background:var(--muted2);flex-shrink:0; }
+  .price-col { font-family:'DM Mono',monospace; font-size:13px; }
+  .price-old { font-size:10px; color:var(--muted); text-decoration:line-through; margin-bottom:2px; font-family:'DM Mono',monospace; }
+  .drop-amt { font-family:'DM Mono',monospace; font-size:13px; color:var(--accent); font-weight:500; }
+  .drop-pct { display:inline-block; padding:3px 8px; border-radius:2px; font-family:'DM Mono',monospace; font-size:12px; font-weight:500; }
+  .drop-pct.high { background:rgba(255,59,47,0.15); color:var(--accent); }
+  .drop-pct.med { background:rgba(255,107,53,0.12); color:var(--accent2); }
+  .drop-pct.low { background:rgba(255,200,100,0.1); color:var(--gold); }
+  .type-tag { font-family:'DM Mono',monospace; font-size:10px; padding:3px 8px; border:1px solid var(--border); border-radius:2px; color:var(--muted); white-space:nowrap; }
+  .new-badge { font-family:'DM Mono',monospace; font-size:9px; padding:2px 6px; background:rgba(0,201,105,0.12); border:1px solid rgba(0,201,105,0.25); border-radius:2px; color:var(--green); letter-spacing:0.08em; white-space:nowrap; }
+  .src-badge { font-family:'DM Mono',monospace; font-size:9px; padding:2px 5px; background:rgba(255,255,255,0.04); border-radius:2px; color:var(--muted2); }
+
+  @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+  .scan-status { display:flex; align-items:center; gap:10px; padding:14px 40px; border-bottom:1px solid var(--border); font-family:'DM Mono',monospace; font-size:11px; color:var(--muted); }
+  .scan-spinner { width:14px;height:14px;border:1.5px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite;flex-shrink:0; }
+  .scan-count { color:var(--text); margin:0 4px; }
+
+  /* Loading skeleton */
+  @keyframes shimmer { 0%{background-position:-400px 0} 100%{background-position:400px 0} }
+  .skeleton { height:48px; margin-bottom:2px; background:linear-gradient(90deg,#161616 25%,#1d1d1d 50%,#161616 75%); background-size:400px 100%; animation:shimmer 1.4s infinite; border-radius:2px; }
+
+  /* Error state */
+  .error-banner { background:#1a0000; border:1px solid #440000; color:#ff8080; padding:12px 20px; border-radius:3px; font-family:'DM Mono',monospace; font-size:12px; margin:16px 0; display:none; }
+
+  .empty-state { padding:60px 40px; text-align:center; display:none; }
+  .empty-state .icon { font-size:40px; margin-bottom:12px; }
+  .empty-state p { color:var(--muted); font-family:'DM Mono',monospace; font-size:12px; }
+
+  footer { border-top:1px solid var(--border); padding:24px 40px; display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap; }
+  .footer-disclaimer { font-size:11px; color:var(--muted); max-width:600px; line-height:1.7; }
+  .footer-links { font-family:'DM Mono',monospace; font-size:11px; color:var(--muted); }
+  .footer-links a { color:var(--accent2); text-decoration:none; }
+
+  @media(max-width:900px){
+    header,.scan-status,.description-block,.filters-row,.listings-area,footer{padding-left:20px;padding-right:20px}
+    .stats-bar{grid-template-columns:repeat(2,1fr)}
+    .stat-cell{padding:16px 20px}
+    .table-header,.listing-row{grid-template-columns:2fr 1.2fr 1fr 1fr}
+    .table-header span:nth-child(n+5),.listing-row>*:nth-child(n+5){display:none}
+  }
+  @media(max-width:600px){
+    .stats-bar{grid-template-columns:1fr 1fr}
+    .table-header,.listing-row{grid-template-columns:2fr 1fr 1fr}
+    .table-header span:nth-child(4),.listing-row>*:nth-child(4){display:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="banner">
+  Mumbai luxury listings · ₹5Cr+ · Powered by live scraping of MagicBricks, 99acres, Housing.com &amp; NoBroker &nbsp;·&nbsp;
+  <a href="https://x.com">Follow updates →</a>
+</div>
+
+<header>
+  <div class="logo-area">
+    <div class="logo-icon">📉</div>
+    <div class="logo-wordmark">PANIC<span>SELLING</span></div>
+    <div class="logo-sub">Mumbai Luxury Real Estate</div>
+    <div class="nav-links">
+      <a href="#" class="active">BUY</a>
+      <span style="color:var(--muted2)">/</span>
+      <a href="#">RENT</a>
+    </div>
+  </div>
+  <div class="live-badge"><span class="pulse-dot"></span>SCANNING LIVE</div>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-cell">
+    <div class="stat-label">Drops Found</div>
+    <div class="stat-value red" id="stat-drops">—</div>
+    <div class="stat-sub">active price reductions</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-label">Avg Drop</div>
+    <div class="stat-value gold" id="stat-avg">—</div>
+    <div class="stat-sub">average reduction</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-label">Biggest Drop</div>
+    <div class="stat-value green" id="stat-biggest">—</div>
+    <div class="stat-sub">single listing</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-label">Listings Scanned</div>
+    <div class="stat-value" id="stat-scanned" style="color:#e8e0d0">—</div>
+    <div class="stat-sub">monitored daily</div>
+  </div>
+</div>
+
+<div class="scan-status">
+  <div class="scan-spinner"></div>
+  <span>Scanning <span class="scan-count" id="scanCount">15,000+</span> luxury Mumbai listings daily · MagicBricks · 99acres · Housing.com · NoBroker</span>
+</div>
+
+<div class="description-block">
+  <h2>About</h2>
+  <p>We monitor thousands of luxury real estate listings across Mumbai to detect price reductions in real time. When sellers lower prices on sea-facing apartments, penthouses, or premium villas, those listings appear here first. Price drops are tracked across Bandra, Juhu, Worli, Lower Parel, Malabar Hill, Prabhadevi, and BKC.</p>
+  <details>
+    <summary>How it works</summary>
+    <div class="how-steps">
+      <div class="step"><span class="step-num">1</span><span>We scan luxury Mumbai listings (₹5Cr+) from MagicBricks, 99acres, Housing.com and NoBroker every hour</span></div>
+      <div class="step"><span class="step-num">2</span><span>Prices are compared against our history database — drops ≥ 3% are flagged instantly</span></div>
+      <div class="step"><span class="step-num">3</span><span>Click any row to open the original listing on the source platform</span></div>
+      <div class="step"><span class="step-num">4</span><span>Backend refreshes automatically every 60 minutes. Hit the ↻ button to force a refresh.</span></div>
+    </div>
+  </details>
+</div>
+
+<div class="filters-row">
+  <div class="filter-tabs">
+    <button class="tab active" data-filter="all">All</button>
+    <button class="tab" data-filter="Apartment">Apartments</button>
+    <button class="tab" data-filter="Villa">Villas</button>
+    <button class="tab" data-filter="Penthouse">Penthouses</button>
+    <button class="tab" data-filter="Duplex">Duplexes</button>
+    <button class="tab" data-filter="high">10%+ Drops</button>
+    <button class="tab" data-filter="new">New Today</button>
+  </div>
+  <div class="right-controls">
+    <button class="refresh-btn" id="refreshBtn">↻ Refresh</button>
+    <select class="sort-select" id="sortSelect">
+      <option value="drop_pct">Sort: Biggest % Drop</option>
+      <option value="drop_cr">Sort: Biggest ₹ Drop</option>
+      <option value="recent">Sort: Most Recent</option>
+      <option value="price_asc">Sort: Lowest Price</option>
+      <option value="price_desc">Sort: Highest Price</option>
+    </select>
+    <div class="currency-toggle">
+      <button class="curr-btn active" data-curr="inr">₹ INR</button>
+      <button class="curr-btn" data-curr="usd">$ USD</button>
+    </div>
+  </div>
+</div>
+
+<div class="listings-area">
+  <div class="table-header">
+    <span>Property</span>
+    <span>Location</span>
+    <span>Current Price</span>
+    <span>Previous Price</span>
+    <span>Drop (₹)</span>
+    <span>Drop (%)</span>
+    <span>Type</span>
+  </div>
+  <div id="errorBanner" class="error-banner">
+    ⚠ Could not connect to backend (localhost:8000). Is the server running?
+    <code style="display:block;margin-top:6px;color:#ff6060">uvicorn main:app --reload --port 8000</code>
+  </div>
+  <div id="listingsContainer"></div>
+  <div class="empty-state" id="emptyState">
+    <div class="icon">📭</div>
+    <p>No price drops found yet.<br>The scraper records prices on first run — drops will appear after the second scrape.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-disclaimer">
+    <strong style="color:#666">Disclaimer:</strong> Independent analytics tool for informational purposes only. All data sourced from public listings. Not investment advice.
+  </div>
+  <div class="footer-links">
+    Sources: <a href="https://www.magicbricks.com" target="_blank">MagicBricks</a> ·
+    <a href="https://www.99acres.com" target="_blank">99acres</a> ·
+    <a href="https://housing.com" target="_blank">Housing.com</a> ·
+    <a href="https://www.nobroker.in" target="_blank">NoBroker</a>
+  </div>
+</footer>
+
+<script>
+// ─── CONFIG ──────────────────────────────────────────────────────────────────
+const API_BASE   = "http://localhost:8000";
+const USD_RATE   = 83.5;
+
+// ─── STATE ───────────────────────────────────────────────────────────────────
+let allListings  = [];
+let currentFilter = "all";
+let currentSort  = "drop_pct";
+let currentCurr  = "inr";
+let isLoading    = false;
+
+// ─── FORMAT ──────────────────────────────────────────────────────────────────
+function fmtPrice(cr) {
+  if (currentCurr === "usd") {
+    const usd = cr * 1e7 / USD_RATE;
+    return usd >= 1e6 ? `$${(usd/1e6).toFixed(2)}M` : `$${(usd/1e3).toFixed(0)}K`;
+  }
+  return cr >= 100 ? `₹${cr.toFixed(0)}Cr` : `₹${cr.toFixed(2)}Cr`;
+}
+function fmtDrop(cr) {
+  const s = fmtPrice(Math.abs(cr));
+  return `-${s}`;
+}
+function dropClass(pct) {
+  if (pct >= 12) return "high";
+  if (pct >= 7)  return "med";
+  return "low";
+}
+function timeAgo(isoStr) {
+  if (!isoStr) return "";
+  const diff = (Date.now() - new Date(isoStr + "Z")) / 1000;
+  if (diff < 3600)     return `${Math.round(diff/60)}m ago`;
+  if (diff < 86400)    return `${Math.round(diff/3600)}h ago`;
+  return `${Math.round(diff/86400)}d ago`;
+}
+function srcLabel(src) {
+  return { magicbricks:"MB", "99acres":"99A", housing:"HSG", nobroker:"NB" }[src] || src;
+}
+
+// ─── FILTER + SORT ───────────────────────────────────────────────────────────
+function applyFilter(listings) {
+  if (currentFilter === "all")  return listings;
+  if (currentFilter === "high") return listings.filter(l => l.drop_pct >= 10);
+  if (currentFilter === "new")  return listings.filter(l => l.is_new);
+  return listings.filter(l => l.type === currentFilter);
+}
+
+function applySort(listings) {
+  const s = [...listings];
+  if (currentSort === "drop_pct")   s.sort((a,b) => b.drop_pct - a.drop_pct);
+  else if (currentSort === "drop_cr")  s.sort((a,b) => b.drop_cr - a.drop_cr);
+  else if (currentSort === "recent")   s.sort((a,b) => new Date(b.scraped_at) - new Date(a.scraped_at));
+  else if (currentSort === "price_asc")  s.sort((a,b) => a.price_cr - b.price_cr);
+  else if (currentSort === "price_desc") s.sort((a,b) => b.price_cr - a.price_cr);
+  return s;
+}
+
+// ─── STATS ───────────────────────────────────────────────────────────────────
+function updateStats(listings) {
+  const n = listings.length;
+  const avg = n ? listings.reduce((s,l)=>s+l.drop_pct,0)/n : 0;
+  const biggest = n ? Math.max(...listings.map(l=>l.drop_pct)) : 0;
+  document.getElementById("stat-drops").textContent   = n;
+  document.getElementById("stat-avg").textContent     = n ? `-${avg.toFixed(1)}%`     : "—";
+  document.getElementById("stat-biggest").textContent = n ? `-${biggest.toFixed(1)}%` : "—";
+}
+
+// ─── RENDER ──────────────────────────────────────────────────────────────────
+function renderListings() {
+  const filtered = applyFilter(allListings);
+  const sorted   = applySort(filtered);
+  updateStats(sorted);
+
+  const container   = document.getElementById("listingsContainer");
+  const emptyState  = document.getElementById("emptyState");
+  const errorBanner = document.getElementById("errorBanner");
+  errorBanner.style.display = "none";
+
+  if (sorted.length === 0) {
+    container.innerHTML = "";
+    emptyState.style.display = "block";
+    return;
+  }
+  emptyState.style.display = "none";
+
+  container.innerHTML = sorted.map((l, i) => `
+    <a class="listing-row" href="${l.url}" target="_blank" rel="noopener"
+       style="animation-delay:${i * 0.025}s">
+      <div>
+        <div class="prop-name">${escHtml(l.name)}</div>
+        <div class="prop-sub">${escHtml(l.sub)} · ${timeAgo(l.scraped_at)}
+          <span class="src-badge" style="margin-left:6px">${srcLabel(l.source)}</span>
+        </div>
+      </div>
+      <div><span class="location-badge">${escHtml(l.location)}</span></div>
+      <div><span class="price-col">${fmtPrice(l.price_cr)}</span></div>
+      <div><span class="price-old">${fmtPrice(l.prev_price_cr)}</span></div>
+      <div><span class="drop-amt">${fmtDrop(l.drop_cr)}</span></div>
+      <div>
+        <span class="drop-pct ${dropClass(l.drop_pct)}">↓${l.drop_pct.toFixed(1)}%</span>
+        ${l.is_new ? ' <span class="new-badge">NEW</span>' : ""}
+      </div>
+      <div><span class="type-tag">${escHtml(l.type)}</span></div>
+    </a>
+  `).join("");
+}
+
+function showSkeleton(n = 8) {
+  document.getElementById("listingsContainer").innerHTML =
+    Array(n).fill(`<div class="skeleton"></div>`).join("");
+}
+
+function escHtml(s) {
+  return String(s || "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+// ─── API ─────────────────────────────────────────────────────────────────────
+async function fetchStats() {
+  try {
+    const res = await fetch(`${API_BASE}/api/stats`);
+    if (!res.ok) return;
+    const data = await res.json();
+    document.getElementById("stat-scanned").textContent =
+      (data.total_listings_scanned || 0).toLocaleString() + "+";
+  } catch {}
+}
+
+async function loadListings(forceRefresh = false) {
+  if (isLoading) return;
+  isLoading = true;
+  const btn = document.getElementById("refreshBtn");
+  btn.classList.add("loading");
+  btn.textContent = "↻ Scanning…";
+  showSkeleton();
+
+  try {
+    const url = `${API_BASE}/api/listings?sort=${currentSort}${forceRefresh ? "&refresh=1" : ""}`;
+    const res  = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    allListings = await res.json();
+    renderListings();
+    fetchStats();
+  } catch (err) {
+    console.error(err);
+    document.getElementById("listingsContainer").innerHTML = "";
+    document.getElementById("errorBanner").style.display = "block";
+    document.getElementById("emptyState").style.display  = "none";
+  } finally {
+    isLoading = false;
+    btn.classList.remove("loading");
+    btn.textContent = "↻ Refresh";
+  }
+}
+
+// ─── EVENTS ──────────────────────────────────────────────────────────────────
+document.querySelectorAll(".tab").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tab").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    currentFilter = btn.dataset.filter;
+    renderListings();
+  });
+});
+
+document.getElementById("sortSelect").addEventListener("change", e => {
+  currentSort = e.target.value;
+  renderListings();
+});
+
+document.querySelectorAll(".curr-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".curr-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    currentCurr = btn.dataset.curr;
+    renderListings();
+  });
+});
+
+document.getElementById("refreshBtn").addEventListener("click", () => loadListings(true));
+
+// ─── INIT ────────────────────────────────────────────────────────────────────
+loadListings();
+// Auto-refresh every 5 min
+setInterval(() => loadListings(false), 5 * 60 * 1000);
+</script>
+</body>
+</html>
