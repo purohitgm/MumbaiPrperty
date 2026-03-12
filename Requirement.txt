@@ -1,0 +1,10 @@
+# requirements.txt
+# Copy-paste this into a file named requirements.txt in the same folder as your app
+
+streamlit>=1.40.0
+nsepython
+plotly
+pandas
+numpy
+yfinance
+pyTelegramBotAPI
